@@ -32,10 +32,3 @@ const fat = groups
 
 fat;
 
-const topThreeFat = groups
-  .map((i) => i.reduce((acc, curr) => acc + curr, 0))
-  .sort((a, b) => b - a)
-  .slice(0, 3)
-  .reduce((acc, curr) => acc + curr, 0);
-
-topThreeFat;
