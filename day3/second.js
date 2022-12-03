@@ -27,29 +27,21 @@ const groups = normalizedConent.reduce((acc, line, index) => {
 let totalScore = 0;
 
 for (let group of groups) {
-  group = group.sort((a, b) => b.length - a.length);
+  group = group.sort((a, b) => a.length - b.length);
   const firstLine = group[0].split("");
   const secondLine = group[1].split("");
   const thirdLine = group[2].split("");
 
-  let matches = [];
+  let match = null;
 
-  for (let i = 0; i < firstLine.length; i++) {
-    if (firstLine.includes(secondLine[i])) {
-      matches.push(secondLine[i]);
+  for (const letter of firstLine) {
+    if (secondLine.includes(letter) && thirdLine.includes(letter)) {
+      match = letter;
     }
   }
 
-  let matches2 = [];
-
-  for (let i = 0; i < thirdLine.length; i++) {
-    if (matches.includes(thirdLine[i])) {
-      matches2.push(thirdLine[i]);
-      break;
-    }
-  }
-  if (matches2.length > 0) {
-    totalScore += letterMap.get(matches2[0]);
+  if (match) {
+    totalScore += letterMap.get(matches[0]);
   }
 }
 console.log({ totalScore });
